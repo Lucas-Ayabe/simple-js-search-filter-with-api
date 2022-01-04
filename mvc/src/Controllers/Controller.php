@@ -41,13 +41,22 @@ abstract class Controller
         $this->output(json_encode($response), $status);
     }
 
-    protected function view(string $view, int $status = 200): void
+    /**
+     * Se não entendeu essa parte, vai assistir a aula de cache
+     * @see https://alunos.b7web.com.br/curso/pzp/cache-basico
+     */
+    public function loadView(string $view)
     {
         ob_start();
         include $view;
         $page = ob_get_contents();
         ob_end_clean();
 
-        $this->output($page, $status);
+        return $page;
+    }
+
+    protected function view(string $view, int $status = 200): void
+    {
+        $this->output($this->loadView($view), $status);
     }
 }
