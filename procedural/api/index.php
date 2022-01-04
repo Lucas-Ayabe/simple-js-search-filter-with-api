@@ -44,10 +44,15 @@ if ($_SERVER['REQUEST_METHOD'] !== "POST") {
     );
 }
 
-$search = filter_input(INPUT_POST, 'search', FILTER_SANITIZE_STRING);
-$foundedExercises = array_filter(
-    $exercises,
-    fn (array $exercise): bool => str_starts_with($exercise['name'], $search)
+$search = filter_input(INPUT_POST, 'search');
+$foundedExercises = array_values(
+    array_filter(
+        $exercises,
+        fn (array $exercise): bool => str_contains(
+            mb_strtolower($exercise['name']),
+            mb_strtolower(htmlspecialchars($search))
+        )
+    )
 );
 
 
