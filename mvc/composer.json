@@ -1,0 +1,17 @@
+{
+    "name": "lucas/mvc",
+    "autoload": {
+        "psr-4": {
+            "Lucas\\Mvc\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Lucas-Ayabe",
+            "email": "lucas.ayabe@gmail.com"
+        }
+    ],
+    "require": {
+        "nikic/fast-route": "^1.3"
+    }
+}
